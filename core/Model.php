@@ -60,6 +60,16 @@ abstract class Model extends Database
         $this->query("INSERT INTO {$this->table}", "({$keys}) VALUES ({$values})", $data);
     }
 
+    public function update($id, array $data): void
+    {
+        $set = implode(',', array_map(fn($key) => "{$key} = :{$key}", array_keys($data)));
+        $this->query("UPDATE {$this->table} SET ", "{$set} WHERE id = :id", array_merge($data, ['id' => $id]));
+    }
+
+    /**
+     * @param $id
+     * @return void
+     */
     public function destroy($id): void
     {
         $this->query("DELETE FROM {$this->table} ", "WHERE id = :id", ['id' => $id]);

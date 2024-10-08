@@ -12,4 +12,4 @@ $note = $model->find($id);
 auth(!isset($note['user_id']) || $note['user_id'] !== 3);
 
 
-view('notes.show',['title' => 'View Note', 'note' => $note]);
+view('notes.edit',['title' => 'Edit Note', 'note' => $note]);

@@ -25,6 +25,18 @@ class Validator
      * @param $value
      * @return mixed
      */
+    public static function param($value): mixed
+    {
+        if (empty($value)) {
+            Response::abort();
+        }
+        return $value;
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
     public static function email($value): mixed
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
